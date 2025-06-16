@@ -82,7 +82,6 @@ const Phonebook = () => {
     const personObject = {
       name: newName,
       number: newNumber,
-      id: String(persons.length + 1),
     };
 
     const personExists = persons.find((person) => person.name === newName);
@@ -119,14 +118,22 @@ const Phonebook = () => {
         }, 5000);
       })
       .catch((error) => {
+        let errorMsg = "An error occurred!";
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error
+        ) {
+          errorMsg = error.response.data.error;
+        }
         setMessages({
-          errorMessage: error.response.data.error,
+          errorMessage: errorMsg,
           successMessage: null,
         });
+        setTimeout(() => {
+          setMessages({ errorMessage: null, successMessage: null });
+        }, 5000);
       });
-    setTimeout(() => {
-      setMessages({ errorMessage: null, successMessage: null });
-    }, 5000);
   };
 
   const updatePerson = (id, updatedPerson) => {
@@ -167,7 +174,7 @@ const Phonebook = () => {
         })
         .catch(() => {
           setMessages({
-            errorMessage: `'${person.name}' was already removed from the server`,
+            errorMessage: `'${person.name}' was already removed from the server!`,
             successMessage: null,
           });
           setTimeout(() => {
