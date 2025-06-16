@@ -104,18 +104,29 @@ const Phonebook = () => {
       return;
     }
 
-    personsServices.create(personObject).then((returnedPerson) => {
-      setPersons(persons.concat(returnedPerson));
-      setNewName("");
-      setNewNumber("");
-      setMessages({
-        errorMessage: null,
-        successMessage: `${returnedPerson.name} added successfully!`,
+    personsServices
+      .create(personObject)
+      .then((returnedPerson) => {
+        setPersons(persons.concat(returnedPerson));
+        setNewName("");
+        setNewNumber("");
+        setMessages({
+          errorMessage: null,
+          successMessage: `${returnedPerson.name} added successfully!`,
+        });
+        setTimeout(() => {
+          setMessages({ errorMessage: null, successMessage: null });
+        }, 5000);
+      })
+      .catch((error) => {
+        setMessages({
+          errorMessage: error.response.data.error,
+          successMessage: null,
+        });
       });
-      setTimeout(() => {
-        setMessages({ errorMessage: null, successMessage: null });
-      }, 5000);
-    });
+    setTimeout(() => {
+      setMessages({ errorMessage: null, successMessage: null });
+    }, 5000);
   };
 
   const updatePerson = (id, updatedPerson) => {
