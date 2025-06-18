@@ -1,29 +1,54 @@
 h1 {
-  color: green;
+  color: red;
   font-style: italic;
 }
 
-li {
-  color: gray;
-  padding-top: 3px;
-  font-size: 18px;
+h2 {
+  color: blue;  
+}
+
+input {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.success, .error {
+  background-color: lightgray;
+  font-size: 25px;
+  text-align: center;
+  width: fit-content;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: black;
+  padding: 10px;
+  width: 600px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
 }
 
 .error {
-  color: red;
+    color: red;
 }
 
 .success {
-  color: green;
+  color: blue;
 }
 
-.error,
-.success {
-  background: lightgrey;
-  font-size: 20px;
-  border-style: solid;
+button {
+  font-weight: bold;
+  margin: 5px;
+}
+
+.delete {
+  color: white;
+  background-color: red;
   border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+li {
+  font-size: 20px;
+  list-style-type: decimal-leading-zero;
 }
